@@ -85,7 +85,8 @@ public class boardService {
         if(addStatus){
             result = "true";
         }
-        log.debug("");
+        log.info("git test");
+
         return result;
     }
 
