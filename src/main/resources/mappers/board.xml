@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.googleproject.Board.repository.boardRepository">
+    <select id="allBoard" resultType="boardDto">
+        SELECT * FROM board
+    </select>
+
+    <select id="detail" resultType="boardDto">
+        SELECT * FROM board WHERE bno=#{bno}
+    </select>
+
+    <insert id="addList" useGeneratedKeys="true" keyProperty="bno" keyColumn="bno">
+        INSERT INTO BOARD(id,title,content,categori) VALUES (#{id},#{title},#{content},#{categori})
+    </insert>
+
+    <insert id="addFile">
+        INSERT INTO FILE(bno,org_file_name,stored_file_name,file_size) VALUES(#{bno},#{org_file_name},#{stored_file_name},#{file_size})
+    </insert>
+
+    <select id="selectFile" parameterType="java.lang.Integer" resultType="hashMap">
+        SELECT fno,org_file_name,file_size
+        FROM FILE
+        WHERE bno=#{bno}
+    </select>
+
+    <select id="getFile" parameterType="java.lang.Integer" resultType="hashMap">
+        SELECT stored_file_name,org_file_name
+        FROM FILE
+        WHERE fno=#{fno}
+    </select>
+
+</mapper>
