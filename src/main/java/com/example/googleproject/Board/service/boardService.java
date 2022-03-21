@@ -85,7 +85,7 @@ public class boardService {
         if(addStatus){
             result = "true";
         }
-
+        log.debug("");
         return result;
     }
 
