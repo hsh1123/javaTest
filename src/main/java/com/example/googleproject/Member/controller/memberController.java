@@ -2,14 +2,12 @@ package com.example.googleproject.Member.controller;
 
 import com.example.googleproject.Member.domain.memberDto;
 import com.example.googleproject.Member.service.memberService;
-import com.example.googleproject.utill.Name.Client;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j

@@ -27,7 +27,7 @@
     </select>
 
     <update id="updateProfile">
-        UPDATE member SET name=#{},phone=#{},email=#{},categori=#{},price=#{},place=#{}
+        UPDATE member SET (name,phone,email,categori,price,place) =(#{},#{},#{},#{},#{},#{})
         WHERE mno=#{mno}
     </update>
 

@@ -27,8 +27,6 @@ public class boardService {
 
     public List<boardDto> allBoard(){
 
-//      log.info("boardService all Board ::: {}", boardRepository.allBoard());
-
       return boardRepository.allBoard();
     }
 
@@ -70,7 +68,6 @@ public class boardService {
                for(int i=0; i< list.size(); i++){
 
                    boardRepository.addFile(list.get(i));
-
                }
             } catch (Exception e) {
                 log.error(e.getMessage(),e);
