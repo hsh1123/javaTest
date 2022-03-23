@@ -2,13 +2,13 @@ package com.example.googleproject.Board.service;
 
 import com.example.googleproject.Board.domain.boardDto;
 import com.example.googleproject.Board.domain.fileDto;
+import com.example.googleproject.Board.domain.productDto;
 import com.example.googleproject.Board.repository.boardRepository;
 import com.example.googleproject.utill.File.FileUtil;
 import com.example.googleproject.utill.Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.*;
@@ -118,6 +118,75 @@ public class boardService {
 
 
         return test;
+    }
+
+    public List<String> mainAddList(MultipartHttpServletRequest req){
+
+
+        String id = req.getParameter("id");
+        String title = req.getParameter("title");
+        String content = req.getParameter("content");
+        String status = req.getParameter("status");
+        String exchange = req.getParameter("exchange");
+        String money = req.getParameter("money");
+        String categori = req.getParameter("categori");
+        String place = req.getParameter("place");
+
+        List<String> mainList = new ArrayList<>();
+        productDto dto = new productDto(id,title,content,status,exchange,money,categori,place);
+        productDto result;
+
+        if(!dto.getId().equals("") || dto.getId() != null) {
+
+            result = util.productDataTransform(dto);
+
+            boardRepository.mainAddList(result);
+
+            log.info("boardService mainAddList() Pno ::: {}",dto.getPno());
+
+            try {
+
+                List<Map<String,Object>> list = fileUtil.parseInsertFileInfo(dto.getPno(),req);
+
+//                for(int i =0; i<list.size(); i++){
+//                    Object key = list.get(i).get("pno");
+//                    int a = (Integer)key;
+//
+//                    log.info("boardService mainAddList list key ::: {}",a);
+//
+//                }
+                int seq=0;
+
+                if(list.size()!=0){
+
+                    Object key = list.get(0).get("pno");
+                    seq= (Integer)key;
+
+                }
+
+                for(int i=0; i< list.size(); i++){
+
+                    boardRepository.mainAddFile(list.get(i));
+                }
+
+                log.info("boardService mainAddList() pno ::: {}",dto.getPno());
+
+                mainList = boardRepository.getMainFile(seq);
+
+                for(int i = 0; i<mainList.size(); i++){
+                    log.info("boardService mainAddList() mainList ::: {}",mainList.get(i));
+                }
+
+
+            } catch (Exception e) {
+                log.error(e.getMessage(),e);
+            }
+
+        }else{
+            log.error("boardService mainAddList dto.getId() is null or empty");
+        }
+
+        return mainList;
     }
 
 }

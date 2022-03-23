@@ -5,7 +5,7 @@
 
 <mapper namespace="com.example.googleproject.Board.repository.boardRepository">
     <select id="allBoard" resultType="boardDto">
-        SELECT * FROM board
+        SELECT * FROM board ORDER BY wdate DESC;
     </select>
 
     <select id="detail" resultType="boardDto">
@@ -30,6 +30,18 @@
         SELECT stored_file_name,org_file_name
         FROM FILE
         WHERE fno=#{fno}
+    </select>
+
+    <insert id="mainAddList" useGeneratedKeys="true" keyProperty="pno" keyColumn="pno">
+        INSERT INTO PRODUCT(id,title,content,categori,place,state,exchange,status,money) VALUES (#{id},#{title},#{content},#{categori},#{place},#{state},#{exchange},#{status},#{money})
+    </insert>
+
+    <insert id="mainAddFile">
+        INSERT INTO img_file(pno,org_file_name,stored_file_name,file_size) VALUES(#{pno},#{org_file_name},#{stored_file_name},#{file_size})
+    </insert>
+
+    <select id="getMainFile" resultType="java.lang.String">
+        SELECT stored_file_name FROM img_file WHERE pno=#{pno}
     </select>
 
 </mapper>

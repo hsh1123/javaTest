@@ -2,6 +2,7 @@ package com.example.googleproject.Board.repository;
 
 import com.example.googleproject.Board.domain.boardDto;
 import com.example.googleproject.Board.domain.fileDto;
+import com.example.googleproject.Board.domain.productDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -23,5 +24,11 @@ public interface boardRepository {
     List<Map<String, Object>> selectFile(int bno);
 
     Map<String, Object> getFile(fileDto dto);
+
+    boolean mainAddList(productDto dto);
+
+    boolean mainAddFile(Map<String,Object> map);
+
+    List<String> getMainFile(int pno);
 
 }

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Slf4j
@@ -19,7 +18,7 @@ public class FileUtil {
 
     private final String filePath = "/Users/seonghohong/IdeaProjects/googleProject/frontend/src/assets/";
 
-    public List<Map<String, Object>> parseInsertFileInfo(int bno,MultipartHttpServletRequest req) throws Exception{
+    public List<Map<String, Object>> parseInsertFileInfo(int seq,MultipartHttpServletRequest req) throws Exception{
 
         String originalFileName = null;
         String originalFileExtension = null;
@@ -50,7 +49,13 @@ public class FileUtil {
                 data.get(i).transferTo(file);
 
                 listMap = new HashMap<String, Object>();
-                listMap.put("bno", bno);                            //board num
+
+                if(req.getParameter("money") == null){            //board num
+                    listMap.put("bno", seq);
+                }else{
+                    listMap.put("pno", seq);
+                }
+
                 listMap.put("org_file_name", originalFileName);     //파일명(원본)
                 listMap.put("stored_file_name", storedFileName);    //파일명(수정)
                 listMap.put("file_size", data.get(i).getSize());  //파일 크기

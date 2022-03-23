@@ -26,9 +26,9 @@
         SELECT * FROM MEMBER WHERE MNO=#{mno}
     </select>
 
-    <update id="updateProfile">
-        UPDATE member SET (name,phone,email,categori,price,place) =(#{},#{},#{},#{},#{},#{})
-        WHERE mno=#{mno}
-    </update>
+<!--    <update id="updateProfile">-->
+<!--        UPDATE member SET (name,phone,email,categori,price,place) =(#{},#{},#{},#{},#{},#{})-->
+<!--        WHERE mno=#{mno}-->
+<!--    </update>-->
 
 </mapper>

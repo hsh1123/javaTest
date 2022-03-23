@@ -13,14 +13,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @RestController
-public class BoardController {
+public class boardController {
 
     @Autowired
     boardService boardService;
@@ -97,7 +96,19 @@ public class BoardController {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    @PostMapping("/product/write")
+    public List<String> mainWrite(MultipartHttpServletRequest req){
 
+        List<String> list = boardService.mainAddList(req);
 
+        if(list.size()==0){
+            log.info("BoardController mainWrite status ::: {}",list.size());
+            list.add("zero");
+        }
+
+        log.info("BoardController mainWrite status ::: {}",list.size());
+
+        return list;
+    }
 
 }

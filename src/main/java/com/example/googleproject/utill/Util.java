@@ -1,7 +1,9 @@
 package com.example.googleproject.utill;
 
 import com.example.googleproject.Board.domain.boardDto;
+import com.example.googleproject.Board.domain.productDto;
 import com.example.googleproject.Member.domain.memberDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -13,6 +15,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.UUID;
 
+@Slf4j
 public class Util {
 
 
@@ -78,6 +81,23 @@ public class Util {
         }
 
         return result;
+    }
+
+    public productDto productDataTransform(productDto dto){
+
+        if(!dto.getId().equals("") || dto.getId() != null){
+
+            if(dto.getState()==null){
+                dto.setState("판매중");
+            }
+        }else {
+
+            log.debug("Util productDataTransform id is null");
+
+        }
+
+
+        return dto;
     }
 
 }
