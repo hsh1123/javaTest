@@ -44,4 +44,12 @@
         SELECT stored_file_name FROM img_file WHERE pno=#{pno}
     </select>
 
+    <select id="getProductList" resultType="productDto">
+        SELECT * FROM product ORDER BY regiDate DESC;
+    </select>
+
+    <select id="getProductDetail" resultType="productDto">
+        SELECT * FROM product WHERE pno=#{pno}
+    </select>
+
 </mapper>

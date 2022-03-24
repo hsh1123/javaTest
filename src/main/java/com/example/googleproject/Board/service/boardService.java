@@ -122,7 +122,6 @@ public class boardService {
 
     public List<String> mainAddList(MultipartHttpServletRequest req){
 
-
         String id = req.getParameter("id");
         String title = req.getParameter("title");
         String content = req.getParameter("content");
@@ -187,6 +186,26 @@ public class boardService {
         }
 
         return mainList;
+    }
+
+    public List<productDto> getProductList(){
+
+        List<productDto> list = boardRepository.getProductList();
+
+        return list;
+    }
+
+    public List<productDto> getProductDetail(productDto dto){
+
+        List<productDto> list = boardRepository.getProductDetail(dto);
+
+        return list;
+    }
+
+    public List<String> getMainFile(int pno){
+
+        return boardRepository.getMainFile(pno);
+
     }
 
 }

@@ -1,12 +1,14 @@
 package com.example.googleproject.Board.domain;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -22,8 +24,8 @@ public class productDto {
     private String exchange;
     private String status; // 상품의 상태
     private String money;
-    private Date wdate;
-    private Date edate;
+    private Date regiDate;
+    private Date endDate;
 
     public productDto(String id, String title, String content, String categori,String place, String status, String exchange,String money){
         this.id = id;

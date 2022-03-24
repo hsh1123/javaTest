@@ -31,4 +31,8 @@ public interface boardRepository {
 
     List<String> getMainFile(int pno);
 
+    List<productDto> getProductList();
+
+    List<productDto> getProductDetail(productDto dto);
+
 }
