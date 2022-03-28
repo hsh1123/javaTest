@@ -7,7 +7,8 @@
 <mapper namespace="com.example.googleproject.Member.repository.memberRepository">
     <!--회원가입-->
     <insert id="regi">
-        INSERT INTO MEMBER(id,name,password,email,phone,categori,price,place,file,auth) VALUES(#{id},#{name},#{password},#{email},#{phone},#{categori},#{price},#{place},#{file},#{auth})
+        INSERT INTO MEMBER(id,name,password,email,phone,categori,price,place,file,auth)
+         VALUES(#{id},#{name},#{password},#{email},#{phone},#{categori},#{price},#{place},#{file},#{auth})
     </insert>
     <!--id 유뮤 조회-->
     <select id="getId" resultType="java.lang.Integer">
@@ -15,16 +16,25 @@
     </select>
     <!--login-->
     <select id="getLogin" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM MEMBER WHERE ID=#{id} AND PASSWORD=#{password}
+        SELECT COUNT(*) FROM MEMBER WHERE ID=#{id}
+    </select>
+
+    <select id="getSeq" resultType="java.lang.Integer">
+        SELECT mno FROM MEMBER WHERE ID=#{id}
     </select>
     <!--session-->
     <select id="getToken" resultType="java.lang.Integer">
-        SELECT mno FROM MEMBER WHERE ID=#{id}
+        SELECT mno FROM MEMBER WHERE ID=#{id} AND PASSWORD=#{password}
     </select>
 
     <select id="getMemberData" resultType="memberDto">
         SELECT * FROM MEMBER WHERE MNO=#{mno}
     </select>
+
+    <insert id="memberRegi" useGeneratedKeys="true" keyProperty="mno" keyColumn="mno">
+        INSERT INTO MEMBER(id,name,password,email,phone,categori,price,place,file,auth)
+         VALUES(#{id},#{name},#{password},#{email},#{phone},#{categori},#{price},#{place},#{file},#{auth})
+    </insert>
 
 <!--    <update id="updateProfile">-->
 <!--        UPDATE member SET (name,phone,email,categori,price,place) =(#{},#{},#{},#{},#{},#{})-->

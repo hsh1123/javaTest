@@ -19,8 +19,13 @@ public interface memberRepository {
     //login 정보 확인
     int getLogin(memberDto dto);
 
-    //seq 가져오기
+    //seq 가져오기(id,pwd)
     int getToken(memberDto dto);
+
+    int getSeq(memberDto dto);
+
+    //가입과 동시에 seq 가져오기
+    int memberRegi(memberDto dto);
 
     //seq로 member data 다 불러 오기
     List<memberDto> getMemberData(memberDto dto);

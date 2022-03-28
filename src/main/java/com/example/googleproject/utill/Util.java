@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Util {
 
 
-    public String getHttpConnection(String uri) throws ServletException, IOException {
+    public String getHttpConnection(String uri) throws IOException {
         URL url = new URL(uri);
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -31,7 +31,6 @@ public class Util {
             try (BufferedReader rd = new BufferedReader(new InputStreamReader(stream))) {
                 while ((line = rd.readLine()) != null) {
                     buffer.append(line);
-                    //buffer.append('\r');
                 }
             }
         } catch (Throwable e) {
@@ -66,18 +65,16 @@ public class Util {
         return dto;
     }
 
-    public String loginPasswordTesting(memberDto dto){
+    public String loginTesting(memberDto dto){
+
         String result="false";
+
+        log.info("Util loginTesting dto.getId ::: {}",dto.getId());
 
         if(dto.getId().equals("") || dto.getId() == null){
             result = "false";
         }else{
-
-            if(dto.getPassword().equals("") || dto.getPassword()==null){
-                result = "false";
-            }else {
-                result= "true";
-            }
+            result = "true";
         }
 
         return result;

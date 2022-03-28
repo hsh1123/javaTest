@@ -48,33 +48,6 @@ public class memberService {
 
     }
 
-//    public String getLogin(memberDto dto){
-//
-//        String testedData = util.loginPasswordTesting(dto);
-//        String result="false";
-//
-//        if(testedData.equals("true")){
-//
-//            int cnt = memberRepository.getLogin(dto);
-//
-//            log.info("memberService getLogin cnt ::: {}",cnt);
-//
-//            if(cnt == 1){
-//                result = "true";
-//            }else if(cnt > 1){
-//                result = "false";
-//            }else{
-//                result = "false";
-//            }
-//
-//        }
-//
-//        log.info("memberService getLogin result ::: {}",result);
-//
-//        return result;
-//
-//    }
-
     public int getToken(memberDto dto){
 
         int seq;
@@ -107,10 +80,33 @@ public class memberService {
         return result;
     }
 
-    public String updateProfile(memberDto dto){
+    public int getSeq(memberDto dto){
 
+        int seq = 0;
 
-        return "";
+        if(dto.getId().equals("")|| dto.getId() != null){
+
+            seq = memberRepository.getSeq(dto);
+
+        }
+
+        return seq;
+
+    }
+
+    public int memberRegi(memberDto dto){
+
+        log.info("memberService memberRegi dto ::: {}",dto);
+
+        int result = memberRepository.memberRegi(dto);
+
+//        log.info("memberService memberRegi mno ::: {}",dto.getMno());
+
+        if(result==1){
+            return dto.getMno();
+        }else{
+            return 0;
+        }
     }
 
 }
