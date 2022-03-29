@@ -21,11 +21,12 @@ public class memberController {
     memberService memberService;
 
     @PostMapping("/regi")
-    public String regi(@RequestBody memberDto dto){
+    public int regi(@RequestBody memberDto dto){
 
         log.info("memberController regi {}",dto);
 
-        String result = memberService.regi(dto);
+        int result = memberService.regi(dto);
+
         return result;
     }
 
@@ -39,6 +40,7 @@ public class memberController {
         return seq+"";
     }
 
+    //sequence, get member Data
     @PostMapping("/member/data")
     public List<memberDto> getMemberData(@RequestBody memberDto dto){
 
@@ -52,16 +54,21 @@ public class memberController {
     }
 
     @PostMapping("/member/update")
-    public String updateProfile(memberDto dto){
+    public String updateProfile(@RequestBody memberDto dto){
 
-
-        return "";
+        String result = "false";
+        String check = memberService.updateProfile(dto);
+        if(check.equals("true")){
+            result = "true";
+        }
+        return result;
     }
 
     @PostMapping("member/sequence")
     public int getSeq(@RequestBody memberDto dto){
 
         log.info("memberController getSeq ::: {}",dto);
+
         int seq = 0;
 
         seq = memberService.getSeq(dto);
@@ -69,5 +76,20 @@ public class memberController {
         return seq;
     }
 
+    @PostMapping("member/idCheck")
+    public boolean idCheck(@RequestBody memberDto dto){
 
+        log.info("memberController idCheck dto ::: {}",dto);
+
+        boolean check = false;
+
+        boolean cnt = memberService.idCheck(dto);
+
+        if(cnt){
+
+            check = true;
+        }
+
+        return check;
+    }
 }

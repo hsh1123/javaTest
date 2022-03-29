@@ -36,9 +36,9 @@
          VALUES(#{id},#{name},#{password},#{email},#{phone},#{categori},#{price},#{place},#{file},#{auth})
     </insert>
 
-<!--    <update id="updateProfile">-->
-<!--        UPDATE member SET (name,phone,email,categori,price,place) =(#{},#{},#{},#{},#{},#{})-->
-<!--        WHERE mno=#{mno}-->
-<!--    </update>-->
+    <update id="updateProfile">
+        UPDATE member SET name = #{name}, phone = #{phone}, email = #{email}, categori = #{categori}, price = #{price}, place = #{place}
+        WHERE mno=#{mno}
+    </update>
 
 </mapper>

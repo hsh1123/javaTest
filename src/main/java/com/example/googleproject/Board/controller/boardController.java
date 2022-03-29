@@ -51,6 +51,23 @@ public class boardController {
 
     }
 
+    @PostMapping("/board/detail/update")
+    public String boardUpdate(@RequestBody boardDto dto){
+
+        log.info("BoardController boardUpdate bno ::: {}",dto);
+
+        String result = "false";
+
+        String data = boardService.boardUpdate(dto);
+
+        if(data.equals("true")){
+            result = "true";
+        }
+
+        return result;
+
+    }
+
     @PostMapping("/board/write")
     public String write(MultipartHttpServletRequest req){
 

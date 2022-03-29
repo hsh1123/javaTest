@@ -20,11 +20,12 @@ public class memberService {
 
     Util util = new Util();
 
-    public String regi(memberDto dto){
+    public int regi(memberDto dto){
 
         int cnt = memberRepository.getId(dto.getId());
         log.info("result ::: {}",cnt);
-        String rst;
+
+        int insertData=0;
 
         if(cnt == 0){
 
@@ -32,19 +33,20 @@ public class memberService {
 
             log.info("userDto ::: {}",dto);
 
-            boolean insertData = memberRepository.regi(value);
+            insertData = memberRepository.memberRegi(value);
 
-            if(insertData){
-                rst = "true";
+            if(insertData==1){
+                return value.getMno();
             }else{
-                rst = "false";
+                return 0;
             }
 
         }else{
             log.info("userDto ::: {}",dto);
-            rst = "false";
+            return 0;
+
         }
-        return rst;
+
 
     }
 
@@ -108,5 +110,32 @@ public class memberService {
             return 0;
         }
     }
+
+    public String updateProfile(memberDto dto){
+
+        log.info("memberService updateProfile() dto.getId ::: {}",dto);
+
+        if(!dto.getName().equals("") || dto.getName()!=null){
+
+            memberDto result = util.memberDataTransform(dto);
+
+            return memberRepository.updateProfile(result) > 0 ? "true" : "false";
+
+        }
+        else{
+
+            log.info("memberService updateProfile dto is null");
+            return "false";
+
+        }
+
+    }
+
+    public boolean idCheck(memberDto dto){
+
+        return memberRepository.getId(dto.getId()) > 0 ? true : false;
+
+    }
+
 
 }

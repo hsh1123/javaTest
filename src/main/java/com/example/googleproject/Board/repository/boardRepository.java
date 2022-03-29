@@ -35,4 +35,5 @@ public interface boardRepository {
 
     List<productDto> getProductDetail(productDto dto);
 
+    int boardUpdate(boardDto dto);
 }

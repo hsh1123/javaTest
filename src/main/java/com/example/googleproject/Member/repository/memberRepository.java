@@ -30,5 +30,5 @@ public interface memberRepository {
     //seq로 member data 다 불러 오기
     List<memberDto> getMemberData(memberDto dto);
 
-    List<memberDto> updateProfile(memberDto dto);
+    int updateProfile(memberDto dto);
 }

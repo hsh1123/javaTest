@@ -41,7 +41,7 @@ public class Util {
 
     public memberDto memberDataTransform(memberDto dto){
 
-        if(!dto.getId().equals("") || dto.getId() != null){
+        if(!dto.getName().equals("") || dto.getName() != null){
 
             dto.setAuth("n");
 

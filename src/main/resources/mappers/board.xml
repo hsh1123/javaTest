@@ -52,4 +52,9 @@
         SELECT * FROM product WHERE pno=#{pno}
     </select>
 
+    <update id="boardUpdate">
+        UPDATE board SET title = #{title}, categori = #{categori}, content = #{content}
+        WHERE bno=#{bno}
+    </update>
+
 </mapper>

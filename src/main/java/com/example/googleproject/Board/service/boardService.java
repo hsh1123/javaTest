@@ -46,12 +46,13 @@ public class boardService {
 
         String id = req.getParameter("id");
         String title = req.getParameter("title");
+        String categori = req.getParameter("categori");
         String content = req.getParameter("content");
 
         String      result      =   "false";
         boolean     addStatus   =   false;
 
-        boardDto dto = new boardDto(id,title,content);
+        boardDto dto = new boardDto(id,title,categori,content);
         boardDto resultDto;
 
 
@@ -205,6 +206,19 @@ public class boardService {
     public List<String> getMainFile(int pno){
 
         return boardRepository.getMainFile(pno);
+
+    }
+
+    public String boardUpdate(boardDto dto){
+
+        if(!dto.getTitle().equals("") || dto.getTitle() != null){
+            return boardRepository.boardUpdate(dto) > 0 ? "true" : "false";
+        }else{
+            log.debug("boardService boardUpdate bno is null");
+            return "false";
+        }
+
+
 
     }
 

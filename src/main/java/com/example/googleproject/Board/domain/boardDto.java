@@ -17,9 +17,10 @@ public class boardDto {
     private Date wdate;
     private String categori;
 
-    public boardDto(String id, String title, String content){
+    public boardDto(String id, String title,String categori ,String content){
         this.id = id;
         this.title = title;
+        this.categori = categori;
         this.content = content;
     }
 }
